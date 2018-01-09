@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Constantine Karnaukhov",
+      "authorEmail": "genteelknight@gmail.com",
+      "authorUrl": "https://github.com/hustlahusky"
+    }
+  }
+}

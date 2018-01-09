@@ -1,0 +1,49 @@
+{
+  "name": "generator-carcass",
+  "version": "0.0.0",
+  "description": "ЗК.Каркас - Yeoman генератор структуры нового проекта",
+  "homepage": "https://github.com/goldencodeio/carcass",
+  "author": {
+    "name": "Constantine Karnaukhov",
+    "email": "genteelknight@gmail.com",
+    "url": "https://github.com/hustlahusky"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "wordpress",
+    "bitrix",
+    "node",
+    "gitlab-ci",
+    "docker",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^4.1.0",
+    "eslint-config-google": "^0.7.1",
+    "husky": "^0.14.3",
+    "jest": "^21.0.0",
+    "jest-cli": "^21.0.0",
+    "lint-staged": "^4.2.1",
+    "nsp": "^2.6.3",
+    "prettier": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "goldencodeio/carcass",
+  "license": "MIT"
+}
