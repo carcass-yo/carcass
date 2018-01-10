@@ -1,0 +1,46 @@
+image: docker:dind
+
+before_script:
+  - apk add --no-cache py-pip
+  - pip install docker-compose
+
+build:
+  stage: build
+  before_script:
+    - echo 'Build frontend'
+  image: node:alpine
+  script:
+    - sh build.sh
+  cache:
+    paths:
+      - node_modules
+  artifacts:
+    paths:
+      - public/dist/
+  only:
+    - tags
+    - master
+
+staging:
+  stage: deploy
+  variables:
+    DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
+  script:
+    - sh deploy.sh
+  environment:
+    name: staging
+    url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
+  only:
+    - master
+
+production:
+  stage: deploy
+  variables:
+    DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
+  script:
+    - sh deploy.sh
+  environment:
+    name: production
+    url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
+  only:
+    - tags
