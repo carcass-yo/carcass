@@ -1,0 +1,21 @@
+{
+  "name": "<%=appname%>",
+  "author": {
+    "name": "<%=authorName%>",
+    "email": "<%=authorEmail%>"
+  },
+  "private": true,
+  "devDependencies": {
+    "eslint": "^4.1.0",
+    "eslint-config-google": "^0.7.1",
+    "husky": "^0.14.3",
+    "htmllint-cli": "^0.0.6",<% if (stack === 'node') { %>
+    "pug-lint": "^2.5.0",<% } %>
+    "stylelint": "^8.4.0"
+  },
+  "scripts": {
+    "precommit": "npm run test",
+    "prepush": "npm run test",
+    "test": "echo 'No test provided!'"
+  }
+}

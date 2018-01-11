@@ -1,4 +1,3 @@
-'use strict';
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -60,7 +59,6 @@ module.exports = class extends Generator {
     ];
 
     return this.prompt(prompts).then((props) => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
     });
   }
@@ -69,16 +67,92 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    this._writeDotFiles();
+  }
+
+  /**
+   * Write project configs
+   * @private
+   */
+  _writeDotFiles() {
+    let dotFiles = [
+      {
+        filename: 'editorconfig',
+        type: 'simple'
+      },
+      {
+        filename: 'eslintrc',
+        type: 'simple'
+      },
+      {
+        filename: 'htmllintrc',
+        type: 'simple'
+      },
+      {
+        filename: 'stylelintrc',
+        type: 'simple'
+      },
+      {
+        filename: 'gitignore',
+        type: 'template',
+        options: this.props
+      },
+      {
+        filename: 'dockerignore',
+        type: 'template',
+        options: this.props
+      },
+      {
+        filename: 'gitlab-ci.yml',
+        type: 'template',
+        options: this.props
+      },
+      {
+        filename: '_package.json',
+        outputFilename: 'package.json',
+        type: 'template',
+        options: Object.assign({
+          appname: this.appname,
+          authorName: this.user.git.name(),
+          authorEmail: this.user.git.email()
+        }, this.props)
+      }
+    ];
+
+    if (this.props.stack === 'node')
+      dotFiles.push({
+        filename: 'pug-lintrc',
+        type: 'simple'
+      });
+
+    dotFiles.forEach((file) => {
+      if (!file.outputFilename)
+        file.outputFilename = '.' + file.filename;
+
+      switch (file.type) {
+        case 'template':
+          this.fs.copyTpl(
+            this.templatePath(file.filename),
+            this.destinationPath(file.outputFilename),
+            file.options
+          );
+          break;
+
+        case 'simple':
+        default:
+          this.fs.copy(
+            this.templatePath(file.filename),
+            this.destinationPath(file.outputFilename)
+          );
+          break;
+      }
+    });
   }
 
   /**
    * Install scripts
    */
   install() {
-    this.installDependencies();
+    this.yarnInstall();
   }
 };

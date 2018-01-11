@@ -4,13 +4,13 @@ node_modules
 bower_components
 .awcache
 
-# bitrix
+<% if (stack === 'bitrix') { %>
 /www/bitrix
 /www/upload
+<% } %>
 
 public/dist
 public/uploads
-
 
 # Numerous always-ignore extensions
 *.diff
@@ -24,7 +24,7 @@ public/uploads
 *.vi
 *~
 *.lock
-!/**/yarn.lock
+!**/yarn.lock
 !**/composer.lock
 
 # OS or Editor folders
@@ -46,4 +46,3 @@ nbproject
 .vscode
 .directory
 .sql
-.ico

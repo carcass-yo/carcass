@@ -11,7 +11,15 @@ describe('generator-carcass:app', () => {
 
   it('creates files', () => {
     assert.file([
-      'dummyfile.txt'
+      '.editorconfig',
+      '.eslintrc',
+      '.htmllintrc',
+      '.stylelintrc',
+      // '.pug-lintrc',
+      '.dockerignore',
+      '.gitignore',
+      '.gitlab-ci.yml',
+      'package.json'
     ]);
   });
 });
