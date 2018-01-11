@@ -55,12 +55,17 @@ module.exports = class extends Generator {
         message: 'Enter your template name',
         default: this.appname,
         when: (answers) => answers.stack === 'bitrix'
+      },
+
+      {
+        type: 'input',
+        name: 'devDomain',
+        message: 'Enter development domain name',
+        default: this.appname + '.dev'
       }
     ];
 
-    return this.prompt(prompts).then((props) => {
-      this.props = props;
-    });
+    return this.prompt(prompts).then((props) => Object.assign(this, props));
   }
 
   /**
@@ -68,6 +73,7 @@ module.exports = class extends Generator {
    */
   writing() {
     this._writeDotFiles();
+    this._writeStack();
   }
 
   /**
@@ -95,31 +101,30 @@ module.exports = class extends Generator {
       {
         filename: 'gitignore',
         type: 'template',
-        options: this.props
+        options: this
       },
       {
         filename: 'dockerignore',
         type: 'template',
-        options: this.props
+        options: this
       },
       {
         filename: 'gitlab-ci.yml',
         type: 'template',
-        options: this.props
+        options: this
       },
       {
         filename: '_package.json',
         outputFilename: 'package.json',
         type: 'template',
         options: Object.assign({
-          appname: this.appname,
           authorName: this.user.git.name(),
           authorEmail: this.user.git.email()
-        }, this.props)
+        }, this)
       }
     ];
 
-    if (this.props.stack === 'node')
+    if (this.stack === 'node')
       dotFiles.push({
         filename: 'pug-lintrc',
         type: 'simple'
@@ -147,6 +152,18 @@ module.exports = class extends Generator {
           break;
       }
     });
+  }
+
+  /**
+   * Write stack files
+   * @private
+   */
+  _writeStack() {
+    this.fs.copyTpl(
+      this.templatePath(this.stack),
+      this.destinationPath('.'),
+      this
+    );
   }
 
   /**
