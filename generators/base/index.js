@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator');
+const writeTpl = require('../../lib/writeTpl');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -36,17 +37,7 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('.'),
-      this.destinationPath('.'),
-      this.options,
-      {},
-      {
-        globOptions: {
-          dot: true
-        }
-      }
-    );
+    writeTpl.call(this);
   }
 
   /**
