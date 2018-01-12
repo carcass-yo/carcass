@@ -4,25 +4,18 @@ const helpers = require('yeoman-test');
 const describe = require('mocha').describe;
 const before = require('mocha').before;
 const it = require('mocha').it;
+const createFiles = require('./helpers/create-files');
+const unique = require('./helpers/array-unique');
 
-describe('generator-carcass:app', () => {
-  before(() => {
+describe('generator-carcass:app:bitrix', () => {
+  before(function() {
+    this.timeout(10000);
     return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({stack: 'web'})
+      .withPrompts({generator: 'bitrix'})
       .toPromise();
   });
 
   it('creates files', () => {
-    assert.file([
-      '.editorconfig',
-      '.eslintrc',
-      '.htmllintrc',
-      '.stylelintrc',
-      // '.pug-lintrc',
-      '.dockerignore',
-      '.gitignore',
-      '.gitlab-ci.yml',
-      'package.json'
-    ]);
+    assert.file(unique([].concat(createFiles.base, createFiles.bitrix)));
   });
 });
