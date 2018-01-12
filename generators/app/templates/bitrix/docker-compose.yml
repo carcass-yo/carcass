@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  web:
+    build: ./
+    image: <%=appname%>:latest
+    depends_on:
+      - mysql
+      - memcached
+    networks:
+      - default
+      - proxy
+
+  mysql:
+    image: zolotoykod/mysql:latest
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=bitrix
+      - MYSQL_USER=bitrix
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+
+  memcached:
+    image: memcached:1.5-alpine
+    volumes:
+      - cache:/var/lib/memcached
+
+volumes:
+  mysql:
+    driver: local
+  cache:
+    driver: local
+
+networks:
+  proxy:
+    external: true

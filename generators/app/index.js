@@ -71,6 +71,14 @@ module.exports = class extends Generator {
         name: 'devDomain',
         message: 'Enter development domain name',
         default: this.appname + '.dev'
+      },
+
+      {
+        type: 'input',
+        name: 'devDatabasePassword',
+        message: 'Enter development database password',
+        default: '123456',
+        when: (answers) => answers.stack === 'bitrix' || answers.includeMysql
       }
     ];
 

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    ports:
+      - "9000:9000"
+    environment:
+      ENVIRONMENT: development
+      VIRTUAL_HOST: <%=devDomain%>
+    volumes:
+      - ./www:/var/www/bitrix:Z
+      - ./custom-xdebug.ini:/etc/php/7.1/fpm/conf.d/95-custom-xdebug.ini:Z
+
+  mysql:
+    environment:
+      MYSQL_PASSWORD: <%devDatabasePassword%>
+      MYSQL_ROOT_PASSWORD: <%devDatabasePassword%>
+
+networks:
+  proxy:
+    external:
+      name: "nginx-proxy"

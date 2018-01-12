@@ -1,0 +1,11 @@
+{
+  "authors": [
+    {
+      "name": "Constantine Karnaukhov",
+      "email": "genteelknight@gmail.com"
+    }
+  ],
+  "require": {
+    "arrilot/bitrix-migrations": "^2.1"
+  }
+}

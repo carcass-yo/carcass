@@ -12,9 +12,9 @@ fi
 # build base images
 docker-compose build
 # build apps images
-docker-compose -f docker-compose.yml -f docker-compose.stack.yml build
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
 docker push "$APP_IMAGE_NAME"
 
 # deploy stack
-docker-compose -f docker-compose.yml -f docker-compose.stack.yml config > stack.yml
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml config > stack.yml
 docker stack deploy -c stack.yml --prune "$CI_PROJECT_PATH_SLUG-$ENVIRONMENT"

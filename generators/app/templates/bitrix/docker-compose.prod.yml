@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build:
-      dockerfile: Dockerfile-swarm
+      dockerfile: Dockerfile-prod
     image: ${APP_IMAGE_NAME}
     deploy:
       replicas: 1

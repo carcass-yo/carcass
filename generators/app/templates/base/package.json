@@ -16,6 +16,7 @@
   "scripts": {
     "precommit": "npm run test",
     "prepush": "npm run test",
-    "test": "echo 'No test provided!'"
+    "test": "echo 'No test provided!'",
+    "start": "docker-compose up -d"
   }
 }
