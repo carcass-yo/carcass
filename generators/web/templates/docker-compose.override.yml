@@ -9,8 +9,8 @@ services:
 <% if (includeMysql) { %>
   mysql:
     environment:
-      MYSQL_PASSWORD: <%devDatabasePassword%>
-      MYSQL_ROOT_PASSWORD: <%devDatabasePassword%>
+      MYSQL_PASSWORD: <%=devDatabasePassword%>
+      MYSQL_ROOT_PASSWORD: <%=devDatabasePassword%>
 <% } %>
 networks:
   proxy:
