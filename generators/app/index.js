@@ -1,8 +1,17 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const path = require('path');
 
 module.exports = class extends Generator {
+  // constructor(args, opts) {
+  //   super(args, opts);
+  //
+  //   console.log(this.options);
+  //
+  //   process.exit(1);
+  // }
+
   /**
    * Prompts user for project info
    *
@@ -65,93 +74,36 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then((props) => Object.assign(this, props));
+    return this.prompt(prompts).then((props) => Object.assign(this, props, {
+      authorName: this.user.git.name(),
+      authorEmail: this.user.git.email()
+    }));
   }
 
   /**
    * Write project structure
    */
   writing() {
-    this._writeDotFiles();
+    this._writeBase();
     this._writeStack();
   }
 
   /**
-   * Write project configs
+   * Write base project configs
    * @private
    */
-  _writeDotFiles() {
-    let dotFiles = [
+  _writeBase() {
+    this.fs.copyTpl(
+      this.templatePath('base'),
+      this.destinationPath('.'),
+      this,
+      {},
       {
-        filename: 'editorconfig',
-        type: 'simple'
-      },
-      {
-        filename: 'eslintrc',
-        type: 'simple'
-      },
-      {
-        filename: 'htmllintrc',
-        type: 'simple'
-      },
-      {
-        filename: 'stylelintrc',
-        type: 'simple'
-      },
-      {
-        filename: 'gitignore',
-        type: 'template',
-        options: this
-      },
-      {
-        filename: 'dockerignore',
-        type: 'template',
-        options: this
-      },
-      {
-        filename: 'gitlab-ci.yml',
-        type: 'template',
-        options: this
-      },
-      {
-        filename: '_package.json',
-        outputFilename: 'package.json',
-        type: 'template',
-        options: Object.assign({
-          authorName: this.user.git.name(),
-          authorEmail: this.user.git.email()
-        }, this)
+        globOptions: {
+          dot: true
+        }
       }
-    ];
-
-    if (this.stack === 'node')
-      dotFiles.push({
-        filename: 'pug-lintrc',
-        type: 'simple'
-      });
-
-    dotFiles.forEach((file) => {
-      if (!file.outputFilename)
-        file.outputFilename = '.' + file.filename;
-
-      switch (file.type) {
-        case 'template':
-          this.fs.copyTpl(
-            this.templatePath(file.filename),
-            this.destinationPath(file.outputFilename),
-            file.options
-          );
-          break;
-
-        case 'simple':
-        default:
-          this.fs.copy(
-            this.templatePath(file.filename),
-            this.destinationPath(file.outputFilename)
-          );
-          break;
-      }
-    });
+    );
   }
 
   /**
@@ -170,6 +122,25 @@ module.exports = class extends Generator {
    * Install scripts
    */
   install() {
-    this.yarnInstall();
+    this.installDependencies({
+      npm: false,
+      bower: false,
+      yarn: true
+    });
+  }
+
+  /**
+   * Run installDependencies in directory
+   * @param {String[]|String} dir
+   * @param {Object} options
+   * @return {Promise}
+   * @private
+   */
+  _installInDir(dir, options) {
+    if (!Array.isArray(dir)) dir = [dir];
+    dir = path.resolve(...dir);
+    let cwd = process.cwd();
+    process.chdir(dir);
+    return this.installDependencies(options).then(() => process.chdir(cwd));
   }
 };

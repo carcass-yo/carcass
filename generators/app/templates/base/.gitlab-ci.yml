@@ -26,7 +26,7 @@ staging:
   variables:
     DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
-    - sh deploy.sh
+    - sh bin/deploy
   environment:
     name: staging
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
@@ -38,7 +38,7 @@ production:
   variables:
     DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
-    - sh deploy.sh
+    - sh bin/deploy
   environment:
     name: production
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
