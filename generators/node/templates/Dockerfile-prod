@@ -1,0 +1,8 @@
+FROM <%=appname%>:latest
+
+COPY ./www/package.json /home/node/www/
+COPY ./www/yarn.lock /home/node/www/
+RUN yarn install --no-progress --prod --pure-lockfile && yarn cache clean
+COPY ./www/ /home/node/www/
+RUN chown -R node.node /home/node
+USER node

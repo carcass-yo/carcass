@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  app:
+    build: ./
+    image: <%=appname%>:latest
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/ucs_marketplace
+      - COOKIE_SECRET
+      - NODEMAILER_SMTP_HOST
+      - NODEMAILER_SMTP_PORT
+      - NODEMAILER_SENDER_EMAIL
+    tty: true
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    user: mongodb
+    volumes:
+      - md:/data/db
+
+  web:
+    image: nginx:latest
+    depends_on:
+      - app
+    networks:
+      - default
+      - proxy
+
+volumes:
+  # mongo data. used as abbr cause https://github.com/vmware/docker-volume-vsphere/issues/1933
+  md:
+    driver: local
+
+networks:
+  proxy:
+    external: true
