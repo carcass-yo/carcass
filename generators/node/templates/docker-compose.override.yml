@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    volumes:
+      - ./www:/home/node/www:Z
+    command: /bin/bash
+    environment:
+      ENVIRONMENT: development
+      NODE_ENV: development
+      SITE_DOMAIN: <%=devDomain%>
+      COOKIE_SECRET: <%=cookieSecret%>
+      NODEMAILER_SMTP_HOST: mail.zolotoykod.ru
+      NODEMAILER_SMTP_PORT: 25
+      NODEMAILER_SENDER_EMAIL: noreply@<%=devDomain%>
+    ports:
+      - "5858:5858"
+
+  mongo:
+    ports:
+      - "27017:27017"
+
+  web:
+    environment:
+      VIRTUAL_HOST: <%=devDomain%>
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:Z
