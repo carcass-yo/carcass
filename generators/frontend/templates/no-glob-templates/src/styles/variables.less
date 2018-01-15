@@ -1,0 +1,177 @@
+// TEXT COLOR
+@global-color:                                  #575656;
+@global-muted-color:                            #c2c2c2;
+@global-text-shadow:                            #fff;
+
+// LINK
+@global-link-color:                             @global-primary-background;
+@global-link-hover-color:                       darken(@global-primary-background, 15%);
+@base-link-text-decoration:                     underline;
+
+@global-contrast-color:                         #fff;
+@global-contrast-text-shadow:                   rgba(0,0,0,0.1);
+
+// FONT
+@global-font-family:                            'MuseoSansCyrl', Arial, sans-serif;
+@global-font-size:                              16px;
+@global-line-height:                            24px;
+@text-small-font-size:                          12px;
+@text-small-line-height:                        15px;
+@text-large-font-size:                          20px;
+@text-large-line-height:                        1.1;
+
+// Backgrounds & Borders
+@global-background:                             #fff;
+@global-border:                                 #efefef;
+
+@global-border-radius:                          3px;
+
+@global-default-background:                     #f2f2f2;
+@global-default-hover-background:               @global-default-background;
+@global-default-active-background:              @global-default-background;
+
+@global-primary-background:                     #ef5350;
+@global-secondary-background:                   #a6a6a7;
+@global-success-background:                     #69910a;
+@global-warning-background:                     #faa732;
+@global-danger-background:                      #e94c37;
+@background-muted-background:                   @global-default-background;
+
+// Spacings
+@global-margin:                                 15px;
+@global-medium-margin:                          25px;
+@global-large-margin:                           40px;
+@global-xlarge-margin:                          40px;
+@global-gutter:                                 30px;
+@global-medium-gutter:                          @global-gutter;
+@global-large-gutter:                           50px;
+
+// Controls
+@global-control-height:                         30px;
+@global-control-small-height:                   25px;
+@global-control-large-height:                   40px;
+
+// FONT
+@base-h1-font-size:                             40px;
+@base-h1-line-height:                           1.1;
+@base-h2-font-size:                             25px;
+@base-h2-line-height:                           1.1;
+@base-h3-font-size:                             20px;
+@base-h4-font-size:                             18px;
+@base-body-color:                               @global-color;
+@base-heading-color:                            @global-color;
+@base-body-background:                          #fff;
+@global-z-index:                                1000;
+@base-body-font-family:                         @global-font-family;
+@base-heading-font-family:                      @global-font-family;
+@base-em-color:                                 @base-body-color;
+@base-body-font-weight:                         300;
+@base-heading-font-weight:                      700;
+
+// BUTTONS
+// BUTTONS Colors
+@button-primary-background: @global-primary-background;
+@button-primary-hover-background: darken(@global-primary-background, 10%);
+@button-primary-active-background: @global-primary-background;
+@button-primary-color: #fff;
+@button-primary-hover-color: @button-primary-color;
+@button-primary-active-color: @button-primary-color;
+@button-default-background: #fff;
+@button-default-hover-background: @button-default-background;
+@button-default-active-background: @button-default-background;
+@button-default-color: @global-primary-background;
+@button-default-hover-color: darken(@global-primary-background, 20%);
+@button-default-active-color: @button-default-color;
+@button-default-border: @global-primary-background;
+@button-default-hover-border: darken(@button-default-border, 20%);
+@button-default-active-border: darken(@button-default-border, 30%);
+@button-disabled-background: #666;
+@button-disabled-color: #fff;
+@button-border-width: 2px;
+
+
+// BUTTONS sizes
+@button-font-size: @global-font-size;
+@button-line-height: 50px;
+@button-padding-horizontal: 20px;
+@button-large-font-size: @button-font-size;
+@button-large-line-height: 50px;
+@button-large-padding-horizontal: 20px;
+@button-large-height: 50px;
+@button-contrast-text-shadow: rgba(255, 255, 255, 0.45);
+@form-large-height: @button-large-height;
+
+// NAVBAR
+@navbar-background: transparent;
+@navbar-nav-item-height: auto;
+@navbar-nav-item-padding-horizontal: 12px;
+@navbar-nav-item-font-size: 16px;
+@navbar-nav-item-color: #c2c2c2;
+
+// SUBNAV
+@subnav-hover-color: @global-primary-background;
+@subnav-active-color: @global-primary-background;
+
+//@button-background: #fff;
+@text-primary-color: @global-primary-background;
+
+@icon-font-path: '../../fonts';
+
+// ACCORDION
+@accordion-item-margin-top: 20px;
+@accordion-content-margin-top: 20px;
+@accordion-title-font-size: @global-font-size;
+@accordion-title-line-height: @global-line-height;
+
+// FORM
+@form-width-medium: 241px;
+@form-padding-horizontal: 20px;
+@form-height: 50px;
+@form-border-width: 2px;
+@form-border: #e6e5e5;
+
+// BREAKPOINT
+@breakpoint-small:                              640px;
+@breakpoint-medium:                             960px;
+@breakpoint-large:                              1230px;
+
+// CONTAINER
+@container-max-width:                           1170px;
+@container-padding-horizontal:                  @global-gutter;
+
+// GRID
+// GRID fluidable
+@screenTablet:                                  @breakpoint-small;
+@screenDesktop:                                 @breakpoint-medium;
+@screenLarge:                                   @breakpoint-large;
+@gutterWidth:                                   @global-gutter;
+// @grid-gutter-horizontal-l:                      25px;
+// @grid-large-gutter-horizontal:                  25px;
+// @grid-large-gutter-vertical:                    25px;
+// @grid-large-gutter-horizontal-l:                25px;
+// @grid-large-gutter-vertical-l:                  25px;
+
+// PAGINATION
+@pagination-margin-horizontal:                  15px;
+@pagination-item-color:                         @global-secondary-background;
+
+// swiper slider
+@swiper-arrow-width: 40px;
+@swiper-arrow-height: 28px;
+
+@section-muted-background: #efefef;
+
+// TABLES
+@table-header-cell-font-size: 1rem;
+@table-header-cell-font-weight: 900;
+@table-header-cell-color: @global-color;
+
+// OFF-CANVAS
+@offcanvas-bar-width-m:                         @offcanvas-bar-width;
+@offcanvas-bar-padding-vertical:                7px;
+@offcanvas-bar-padding-vertical-m:              @offcanvas-bar-padding-vertical;
+@offcanvas-bar-padding-horizontal-m:            @offcanvas-bar-padding-horizontal;
+@offcanvas-bar-background:                      #000;
+
+// NAV
+@nav-default-font-size: @global-font-size;

@@ -16,6 +16,10 @@ describe('generator-carcass:app:bitrix', () => {
   });
 
   it('creates files', () => {
-    assert.file(unique([].concat(createFiles.base, createFiles.bitrix)));
+    assert.file(unique([].concat(
+      createFiles.base,
+      createFiles.bitrix,
+      createFiles.frontend.map((f) => f.replace('#DIR#', 'www'))
+    )));
   });
 });

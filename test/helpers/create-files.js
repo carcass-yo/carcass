@@ -9,6 +9,9 @@ module.exports = {
     '.gitlab-ci.yml',
     'package.json'
   ],
+  frontend: [
+    '#DIR#/favicon.png'
+  ],
   web: [
     'www/index.php',
     'docker-compose.override.yml',

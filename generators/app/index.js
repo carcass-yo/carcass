@@ -16,9 +16,10 @@ module.exports = class extends Generator {
       fs.readdir(generatorsDir, (err, files) => {
         if (err) return reject(err);
 
+        let ignoredGenerators = ['app', 'base', 'frontend'];
         this.availableGenerators = files
           .filter((file) =>
-            !(file.startsWith('.') || ['app', 'base'].includes(file))
+            !(file.startsWith('.') || ignoredGenerators.includes(file))
           )
           .map((stack) => {
             return {
@@ -55,20 +56,5 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then((props) => {
       this.composeWith(require.resolve('../' + props.generator));
     });
-  }
-
-  /**
-   * Run installDependencies in directory
-   * @param {String[]|String} dir
-   * @param {Object} options
-   * @return {Promise}
-   * @private
-   */
-  _installInDir(dir, options) {
-    if (!Array.isArray(dir)) dir = [dir];
-    dir = path.resolve(...dir);
-    let cwd = process.cwd();
-    process.chdir(dir);
-    return this.installDependencies(options).then(() => process.chdir(cwd));
   }
 };
