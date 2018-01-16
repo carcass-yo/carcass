@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
 const fs = require('fs');
+const installer = require('../../lib/install');
 
 module.exports = class extends Generator {
   /**
@@ -56,5 +57,13 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then((props) => {
       this.composeWith(require.resolve('../' + props.generator));
     });
+  }
+
+  /**
+   * Install dependencies
+   */
+  install() {
+    if (this.options.skipInstall) return;
+    installer.run().then(() => console.log('success'));
   }
 };

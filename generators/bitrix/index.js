@@ -1,5 +1,8 @@
 const Generator = require('yeoman-generator');
 const writeTpl = require('../../lib/writeTpl');
+const installer = require('../../lib/install');
+const _ = require('lodash');
+const chalk = require('chalk');
 
 module.exports = class extends Generator {
   /**
@@ -48,5 +51,31 @@ module.exports = class extends Generator {
    */
   writing() {
     writeTpl.call(this);
+    this._install();
+  }
+
+  /**
+   * Install scripts
+   * @private
+   */
+  _install() {
+    installer.add(
+      installer.installInDir(
+        this.destinationPath('www'),
+        (done) => {
+          this.spawnCommand('composer', ['install'])
+            .on('error', (err) => {
+              console.error(err);
+              done();
+            })
+            .on('exit', () => done());
+        },
+        _.template(
+          'Run ' +
+          chalk.yellow.bold('composer install') +
+          ' in <%=dir%>'
+        )
+      )
+    );
   }
 };

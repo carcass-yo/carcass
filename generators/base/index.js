@@ -1,7 +1,15 @@
 const Generator = require('yeoman-generator');
 const writeTpl = require('../../lib/writeTpl');
+const installer = require('../../lib/install');
+const _ = require('lodash');
+const chalk = require('chalk');
 
 module.exports = class extends Generator {
+  /**
+   * Base generator
+   * @param {String|Array} args
+   * @param {Object} opts
+   */
   constructor(args, opts) {
     super(args, opts);
     this.option('showGreeting', {
@@ -38,16 +46,31 @@ module.exports = class extends Generator {
    */
   writing() {
     writeTpl.call(this);
+    this._install();
   }
 
   /**
    * Install scripts
+   * @private
    */
-  install() {
-    this.installDependencies({
-      npm: false,
-      bower: false,
-      yarn: true
-    });
+  _install() {
+    installer.add(
+      installer.installInDir(
+        this.destinationPath(),
+        (done) => {
+          this.spawnCommand('yarn', ['install'])
+            .on('error', (err) => {
+              console.error(err);
+              done();
+            })
+            .on('exit', () => done());
+        },
+        _.template(
+          'Run ' +
+          chalk.yellow.bold('yarn install') +
+          ' in <%=dir%>'
+        )
+      )
+    );
   }
 };

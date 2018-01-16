@@ -1,6 +1,8 @@
 const Generator = require('yeoman-generator');
 const writeTpl = require('../../lib/writeTpl');
-const installInDir = require('../../lib/installInDir');
+const installer = require('../../lib/install');
+const _ = require('lodash');
+const chalk = require('chalk');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -59,33 +61,43 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    writeTpl.call(this);
+    writeTpl.call(this, {templatePath: 'root'});
     writeTpl.call(this, {
-      templatePath: 'no-glob-templates',
-      destinationPath: this.options.dir,
-      globOptions: {
-        ignore: []
-      }
+      templatePath: 'main',
+      destinationPath: this.options.dir
     });
 
     if (this.options.includeAngular)
       writeTpl.call(this, {
-        templatePath: 'no-glob-angular',
-        destinationPath: this.options.dir,
-        globOptions: {
-          ignore: []
-        }
+        templatePath: 'angular',
+        destinationPath: this.options.dir
       });
+
+    this._install();
   }
 
   /**
    * Install dependencies
+   * @private
    */
-  install() {
-    installInDir.call(this, this.options.dir, {
-      npm: false,
-      bower: false,
-      yarn: true
-    });
+  _install() {
+    installer.add(
+      installer.installInDir(
+        this.destinationPath(this.options.dir),
+        (done) => {
+          this.spawnCommand('yarn', ['install'])
+            .on('error', (err) => {
+              console.error(err);
+              done();
+            })
+            .on('exit', () => done());
+        },
+        _.template(
+          'Run ' +
+          chalk.yellow.bold('yarn install') +
+          ' in <%=dir%>'
+        )
+      )
+    );
   }
 };
