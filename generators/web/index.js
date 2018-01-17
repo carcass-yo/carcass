@@ -37,11 +37,17 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then((props) => Object.assign(
-      this.options,
-      props,
-      {appname: this.appname}
-    ));
+    return this.prompt(prompts).then((props) => {
+      Object.assign(
+        this.options,
+        props,
+        {appname: this.appname}
+      );
+      this.composeWith(require.resolve('../frontend'), {
+        dir: 'www',
+        devDomain: this.options.devDomain
+      });
+    });
   }
 
   /**

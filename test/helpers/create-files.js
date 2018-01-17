@@ -10,7 +10,32 @@ module.exports = {
     'package.json'
   ],
   frontend: [
-    '#DIR#/favicon.png'
+    'tslint.json',
+    '#DIR#/favicon.png',
+    '#DIR#/karma.webpack.conf.js',
+    '#DIR#/package.json',
+    '#DIR#/tsconfig.json',
+    '#DIR#/webpack.config.js',
+    '#DIR#/config/bs.proxy.js',
+    '#DIR#/config/helpers.js',
+    '#DIR#/config/karma.conf.js',
+    '#DIR#/config/karma-test-shim.js',
+    '#DIR#/config/webpack.common.js',
+    '#DIR#/config/webpack.dev.js',
+    '#DIR#/config/webpack.prod.js',
+    '#DIR#/config/webpack.test.js',
+    '#DIR#/src/app/lib/helpers.ts',
+    '#DIR#/src/app/lib/jquery.ts',
+    '#DIR#/src/app/lib/RestService.ts',
+    '#DIR#/src/app/lib/uikit.ts',
+    '#DIR#/src/styles/blocks/.gitkeep',
+    '#DIR#/src/styles/base.less',
+    '#DIR#/src/styles/style.less',
+    '#DIR#/src/styles/uikit.less',
+    '#DIR#/src/styles/variables.less',
+    '#DIR#/src/main.ts',
+    '#DIR#/src/polyfills.ts',
+    '#DIR#/src/vendor.ts'
   ],
   web: [
     'www/index.php',

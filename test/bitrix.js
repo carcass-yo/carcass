@@ -5,7 +5,7 @@ const describe = require('mocha').describe;
 const before = require('mocha').before;
 const it = require('mocha').it;
 const createFiles = require('./helpers/create-files');
-const unique = require('./helpers/array-unique');
+const _ = require('lodash');
 
 describe('generator-carcass:app:bitrix', () => {
   before(function() {
@@ -16,7 +16,7 @@ describe('generator-carcass:app:bitrix', () => {
   });
 
   it('creates files', () => {
-    assert.file(unique([].concat(
+    assert.file(_.uniq([].concat(
       createFiles.base,
       createFiles.bitrix,
       createFiles.frontend.map((f) => f.replace('#DIR#', 'www'))
