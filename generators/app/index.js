@@ -1,11 +1,10 @@
-const Generator = require('yeoman-generator');
+const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
 const fs = require('fs');
-const installer = require('../../lib/install');
 
-module.exports = class extends Generator {
+module.exports = class extends GoldenCodeYoGenerator {
   /**
    * Init main generator
    * Get available generators list
@@ -64,6 +63,6 @@ module.exports = class extends Generator {
    */
   install() {
     if (this.options.skipInstall) return;
-    installer.run().then(() => console.log('success'));
+    this.installer.run().then(() => console.log('success'));
   }
 };

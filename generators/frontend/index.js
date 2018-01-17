@@ -1,10 +1,13 @@
-const Generator = require('yeoman-generator');
-const writeTpl = require('../../lib/writeTpl');
-const installer = require('../../lib/install');
+const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
 const _ = require('lodash');
 const chalk = require('chalk');
 
-module.exports = class extends Generator {
+module.exports = class extends GoldenCodeYoGenerator {
+  /**
+   * Frontend generator
+   * @param {String|Array} args
+   * @param {Object} opts
+   */
   constructor(args, opts) {
     super(args, opts);
     this.option('dir', {
@@ -61,14 +64,14 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    writeTpl.call(this, {templatePath: 'root'});
-    writeTpl.call(this, {
+    this.writeTpl.call(this, {templatePath: 'root'});
+    this.writeTpl.call(this, {
       templatePath: 'main',
       destinationPath: this.options.dir
     });
 
     if (this.options.includeAngular)
-      writeTpl.call(this, {
+      this.writeTpl.call(this, {
         templatePath: 'angular',
         destinationPath: this.options.dir
       });
@@ -81,8 +84,8 @@ module.exports = class extends Generator {
    * @private
    */
   _install() {
-    installer.add(
-      installer.installInDir(
+    this.installer.add(
+      this.installer.installInDir(
         this.destinationPath(this.options.dir),
         (done) => {
           this.spawnCommand('yarn', ['install'])

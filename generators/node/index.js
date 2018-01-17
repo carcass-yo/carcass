@@ -1,8 +1,7 @@
-const Generator = require('yeoman-generator');
-const writeTpl = require('../../lib/writeTpl');
+const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
 const crypto = require('crypto');
 
-module.exports = class extends Generator {
+module.exports = class extends GoldenCodeYoGenerator {
   /**
    * Init web generator with base generator
    */
@@ -43,6 +42,6 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    writeTpl.call(this);
+    this.writeTpl.call(this);
   }
 };

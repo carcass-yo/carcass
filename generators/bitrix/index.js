@@ -1,10 +1,8 @@
-const Generator = require('yeoman-generator');
-const writeTpl = require('../../lib/writeTpl');
-const installer = require('../../lib/install');
+const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
 const _ = require('lodash');
 const chalk = require('chalk');
 
-module.exports = class extends Generator {
+module.exports = class extends GoldenCodeYoGenerator {
   /**
    * Init web generator with base generator
    */
@@ -50,7 +48,7 @@ module.exports = class extends Generator {
    * Write project structure
    */
   writing() {
-    writeTpl.call(this);
+    this.writeTpl.call(this);
     this._install();
   }
 
@@ -59,8 +57,8 @@ module.exports = class extends Generator {
    * @private
    */
   _install() {
-    installer.add(
-      installer.installInDir(
+    this.installer.add(
+      this.installer.installInDir(
         this.destinationPath('www'),
         (done) => {
           this.spawnCommand('composer', ['install'])
