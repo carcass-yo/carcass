@@ -1,7 +1,7 @@
-const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
+const CarcassGenerator = require('../../lib/carcass-generator');
 const crypto = require('crypto');
 
-module.exports = class extends GoldenCodeYoGenerator {
+module.exports = class extends CarcassGenerator {
   /**
    * Init web generator with base generator
    */

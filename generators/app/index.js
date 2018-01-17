@@ -1,10 +1,10 @@
-const GoldenCodeYoGenerator = require('../../lib/gc-yo-gen');
+const CarcassGenerator = require('../../lib/carcass-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
 const fs = require('fs');
 
-module.exports = class extends GoldenCodeYoGenerator {
+module.exports = class extends CarcassGenerator {
   /**
    * Init main generator
    * Get available generators list
