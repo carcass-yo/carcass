@@ -1,8 +1,8 @@
-FROM zolotoykod/bitrix:latest
+FROM zolotoykod/bxweb:latest
 
-COPY ./entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-CMD ["/entrypoint.sh"]
+COPY sbin/ /usr/local/sbin/
+RUN chmod +x /usr/local/sbin/custom-entrypoint
+CMD custom-entrypoint; sleep infinity
 
 # enable ssmtp
 #RUN mv /etc/php/7.1/fpm/conf.d/30-mail.ini.disabled /etc/php/7.1/fpm/conf.d/30-mail.ini &&

@@ -5,4 +5,4 @@ set -e
 php migrator migrate
 
 # server start
-/run.sh
+/usr/local/sbin/entrypoint
