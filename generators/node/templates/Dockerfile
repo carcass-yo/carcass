@@ -11,8 +11,8 @@ RUN apt-get update \
 RUN mkdir -p /home/node/www
 WORKDIR /home/node/www
 
-COPY ./entrypoint.sh /
-RUN chown node.node /entrypoint.sh && chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY sbin/ /usr/local/sbin/
+RUN chown node.node /usr/local/sbin/custom-entrypoint && chmod +x /usr/local/sbin/custom-entrypoint
+CMD custom-entrypoint
 
 ENV LANG С.UTF-8
