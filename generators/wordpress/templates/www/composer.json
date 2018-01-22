@@ -1,0 +1,41 @@
+{
+  "name": "<%=appname%>",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Constantine Karnaukhov",
+      "email": "genteelknight@gmail.com"
+    }
+  ],
+  "keywords": [
+    "wordpress", "composer", "docker", "wp"
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "composer/installers": "^1.4",
+    "johnpbloch/wordpress": "4.9.2",
+    "oscarotero/env": "^1.1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0.2"
+  },
+  "extra": {
+    "installer-paths": {
+      "content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "content/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "wp"
+  },
+  "scripts": {
+    "test": [
+      "phpcs"
+    ]
+  }
+}

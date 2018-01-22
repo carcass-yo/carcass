@@ -44,7 +44,7 @@ module.exports = {
     'docker-compose.yml',
     'Dockerfile',
     'Dockerfile-prod',
-    'entrypoint.sh'
+    'sbin/custom-entrypoint'
   ],
   bitrix: [
     'www/bitrix/.settings.php',
@@ -57,7 +57,7 @@ module.exports = {
     'docker-compose.yml',
     'Dockerfile',
     'Dockerfile-prod',
-    'entrypoint.sh'
+    'sbin/custom-entrypoint'
   ],
   node: [
     'nginx/conf.d/default.conf',
@@ -95,5 +95,29 @@ module.exports = {
     'Dockerfile',
     'docker-compose.yml',
     'docker-compose.prod.yml'
+  ],
+  wordpress: [
+    'sbin/custom-entrypoint',
+    'www/app/config/environments/development.php',
+    'www/app/config/environments/production.php',
+    'www/app/config/environments/staging.php',
+    'www/app/config/application.php',
+    'www/app/config/memcached.php',
+    'www/app/mu-plugins/disallow-indexing.php',
+    'www/app/mu-plugins/register-theme-directory.php',
+    'www/app/plugins/.gitkeep',
+    'www/app/themes/.gitkeep',
+    'www/app/uploads/.gitkeep',
+    'www/wp/.gitkeep',
+    'www/composer.json',
+    'www/index.php',
+    'www/wp-cli.yml',
+    'www/wp-config.php',
+    'custom-xdebug.ini',
+    'docker-compose.override.yml',
+    'docker-compose.prod.yml',
+    'docker-compose.yml',
+    'Dockerfile',
+    'Dockerfile-prod'
   ]
 };

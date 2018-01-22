@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build:
+      dockerfile: Dockerfile-prod
+    image: ${APP_IMAGE_NAME}
+    environment:
+      WP_HOME: http://${DOMAIN}
+    deploy:
+      replicas: 1
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.serviceDomain=${DOMAIN}
+        - com.df.servicePath=/
+        - com.df.port=80
+      update_config:
+        delay: 10s
+
+networks:
+  proxy:
+    external: true

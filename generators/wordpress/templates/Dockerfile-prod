@@ -1,0 +1,8 @@
+FROM <%=appname%>:latest
+
+COPY ./www/composer.json /var/www/html/
+COPY ./www/composer.lock /var/www/html/
+RUN composer update && composer clear-cache
+
+COPY ./www/ /var/www/html/
+RUN chown -R www-data.www-data /var/www/html/

@@ -2,15 +2,21 @@
 vendor
 node_modules
 bower_components
-.awcache
-
-<% if (stack === 'bitrix') { %>
-/www/bitrix
-/www/upload
-<% } %>
-
-public/dist
-public/uploads
+.awcache<% if (stack === 'bitrix') { %>
+www/bitrix
+www/upload
+<% } %><% if (stack === 'node') { %>
+www/public/dist
+www/public/uploads
+<% } %><% if (stack === 'wordpress') { %>
+www/wp
+www/.htaccess
+www/app/plugins/*
+!www/app/plugins/.gitkeep
+www/app/mu-plugins/*/
+www/app/upgrade
+www/app/uploads/*
+!www/app/uploads/.gitkeep<% } %>
 
 # Numerous always-ignore extensions
 *.diff
@@ -26,6 +32,11 @@ public/uploads
 *.lock
 !**/yarn.lock
 !**/composer.lock
+
+# Dotenv
+.env
+.env.*
+!.env.example
 
 # OS or Editor folders
 .DS_Store
