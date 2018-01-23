@@ -62,6 +62,7 @@ module.exports = {
   node: [
     'nginx/conf.d/default.conf',
     'nginx/Dockerfile',
+    'sbin/custom-entrypoint',
     'www/lib/middleware.js',
     'www/lib/nav.js',
     'www/lib/wasNew.js',
@@ -90,14 +91,12 @@ module.exports = {
     'www/package.json',
     '.pug-lintrc',
     'docker-compose.override.yml',
-    'entrypoint.sh',
     'Dockerfile-prod',
     'Dockerfile',
     'docker-compose.yml',
     'docker-compose.prod.yml'
   ],
   wordpress: [
-    'sbin/custom-entrypoint',
     'www/app/config/environments/development.php',
     'www/app/config/environments/production.php',
     'www/app/config/environments/staging.php',

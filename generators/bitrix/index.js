@@ -4,6 +4,31 @@ const chalk = require('chalk');
 
 module.exports = class extends CarcassGenerator {
   /**
+   * Bitrix generator
+   * @param {String|Array} args
+   * @param {Object} opts
+   */
+  constructor(args, opts) {
+    super(args, opts);
+    this.option('showGreeting', {
+      type: Boolean,
+      description: 'Stack greeting',
+      default: true,
+      hide: true
+    });
+    this.option('authorName', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.name()
+    });
+    this.option('authorEmail', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.email()
+    });
+  }
+
+  /**
    * Init web generator with base generator
    */
   initializing() {
