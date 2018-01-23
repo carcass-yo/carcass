@@ -1,12 +1,25 @@
 {
+  "name": "goldencode/<%=appname%>",
+  "type": "project",
+  "keywords": [
+    "bitrix", "composer", "docker"
+  ],
   "authors": [
     {
-      "name": "Constantine Karnaukhov",
-      "email": "genteelknight@gmail.com"
+      "name": "<%=authorName%>",
+      "email": "<%=authorEmail%>"
     }
   ],
   "require": {
     "arrilot/bitrix-migrations": "^2.1",
     "oscarotero/env": "^1.1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0.2"
+  },
+  "scripts": {
+    "test": [
+      "phpcs"
+    ]
   }
 }

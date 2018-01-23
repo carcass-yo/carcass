@@ -1,14 +1,14 @@
 {
-  "name": "<%=appname%>",
+  "name": "goldencode/<%=appname%>",
   "type": "project",
-  "authors": [
-    {
-      "name": "Constantine Karnaukhov",
-      "email": "genteelknight@gmail.com"
-    }
-  ],
   "keywords": [
     "wordpress", "composer", "docker", "wp"
+  ],
+  "authors": [
+    {
+      "name": "<%=authorName%>",
+      "email": "<%=authorEmail%>"
+    }
   ],
   "repositories": [
     {
