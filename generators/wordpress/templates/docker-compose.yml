@@ -11,29 +11,29 @@ services:
       - default
       - proxy
     environment:
-      DB_NAME: wordpress
-      DB_USER: wordpress
-      DB_PASSWORD: ${MYSQL_PASSWORD}
-      DB_HOST: mysql
-      ENVIRONMENT
-      AUTH_KEY
-      SECURE_AUTH_KEY
-      LOGGED_IN_KEY
-      NONCE_KEY
-      AUTH_SALT
-      SECURE_AUTH_SALT
-      LOGGED_IN_SALT
-      NONCE_SALT
+      - DB_NAME=wordpress
+      - DB_USER=wordpress
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_HOST=mysql
+      - ENVIRONMENT
+      - AUTH_KEY
+      - SECURE_AUTH_KEY
+      - LOGGED_IN_KEY
+      - NONCE_KEY
+      - AUTH_SALT
+      - SECURE_AUTH_SALT
+      - LOGGED_IN_SALT
+      - NONCE_SALT
 
   mysql:
     image: zolotoykod/mysql:latest
     volumes:
       - mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
 
   memcached:
     image: memcached:1.5-alpine

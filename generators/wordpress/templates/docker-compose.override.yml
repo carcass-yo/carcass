@@ -5,26 +5,26 @@ services:
     ports:
       - "9000:9000"
     environment:
-      ENVIRONMENT: development
-      VIRTUAL_HOST: <%=devDomain%>
-      WP_HOME: http://${VIRTUAL_HOST}
-      DB_PASSWORD: <%=devDatabasePassword%>
-      AUTH_KEY: <%=authKey%>
-      SECURE_AUTH_KEY: <%=secureAuthKey%>
-      LOGGED_IN_KEY: <%=loggedInKey%>
-      NONCE_KEY: <%=nonceKey%>
-      AUTH_SALT: <%=authSalt%>
-      SECURE_AUTH_SALT: <%=secureAuthSalt%>
-      LOGGED_IN_SALT: <%=loggedInSalt%>
-      NONCE_SALT: <%=nonceSalt%>
+      - ENVIRONMENT=development
+      - VIRTUAL_HOST=<%=devDomain%>
+      - WP_HOME=http://<%=devDomain%>
+      - DB_PASSWORD=<%=devDatabasePassword%>
+      - AUTH_KEY=<%=authKey%>
+      - SECURE_AUTH_KEY=<%=secureAuthKey%>
+      - LOGGED_IN_KEY=<%=loggedInKey%>
+      - NONCE_KEY=<%=nonceKey%>
+      - AUTH_SALT=<%=authSalt%>
+      - SECURE_AUTH_SALT=<%=secureAuthSalt%>
+      - LOGGED_IN_SALT=<%=loggedInSalt%>
+      - NONCE_SALT=<%=nonceSalt%>
     volumes:
-      - ./www:/var/www/bitrix:Z
+      - ./www:/var/www/html:Z
       - ./custom-xdebug.ini:/etc/php/7.1/fpm/conf.d/95-custom-xdebug.ini:Z
 
   mysql:
     environment:
-      MYSQL_PASSWORD: <%devDatabasePassword%>
-      MYSQL_ROOT_PASSWORD: <%devDatabasePassword%>
+      - MYSQL_PASSWORD=<%=devDatabasePassword%>
+      - MYSQL_ROOT_PASSWORD=<%=devDatabasePassword%>
 
 networks:
   proxy:

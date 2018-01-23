@@ -1,6 +1,6 @@
 <?php
 /** @var string Document Root */
-$webroot_dir = __DIR__ . '/..';
+$webroot_dir = __DIR__ . '/../..';
 
 /**
  * Expose global env() function from oscarotero/env

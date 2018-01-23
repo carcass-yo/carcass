@@ -5,7 +5,7 @@ services:
     environment:
       VIRTUAL_HOST: <%=devDomain%>
     volumes:
-      - ./www:/var/www/html/:Z
+      - ./www:/var/www/html:Z
 <% if (includeMysql) { %>
   mysql:
     environment:

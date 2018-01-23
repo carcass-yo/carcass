@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-prod
     image: ${APP_IMAGE_NAME}
     environment:
-      WP_HOME: http://${DOMAIN}
+      - WP_HOME=http://${DOMAIN}
     deploy:
       replicas: 1
       labels:

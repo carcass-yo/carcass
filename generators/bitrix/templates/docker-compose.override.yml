@@ -8,7 +8,7 @@ services:
       ENVIRONMENT: development
       VIRTUAL_HOST: <%=devDomain%>
     volumes:
-      - ./www:/var/www/bitrix:Z
+      - ./www:/var/www/html:Z
       - ./custom-xdebug.ini:/etc/php/7.1/fpm/conf.d/95-custom-xdebug.ini:Z
 
   mysql:
