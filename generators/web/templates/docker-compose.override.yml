@@ -3,14 +3,14 @@ version: '3'
 services:
   web:
     environment:
-      VIRTUAL_HOST: <%=devDomain%>
+      - VIRTUAL_HOST=<%=devDomain%>
     volumes:
       - ./www:/var/www/html:Z
 <% if (includeMysql) { %>
   mysql:
     environment:
-      MYSQL_PASSWORD: <%=devDatabasePassword%>
-      MYSQL_ROOT_PASSWORD: <%=devDatabasePassword%>
+      - MYSQL_PASSWORD=<%=devDatabasePassword%>
+      - MYSQL_ROOT_PASSWORD=<%=devDatabasePassword%>
 <% } %>
 networks:
   proxy:
