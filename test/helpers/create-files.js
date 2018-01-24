@@ -7,6 +7,7 @@ module.exports = {
     '.dockerignore',
     '.gitignore',
     '.gitlab-ci.yml',
+    'Makefile',
     'package.json'
   ],
   frontend: [

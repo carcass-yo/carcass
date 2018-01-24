@@ -1,22 +1,43 @@
-image: docker:dind
+stages:
+  - test
+  - prebuild
+  - build
+  - deploy
 
-before_script:
-  - apk add --no-cache py-pip
-  - pip install docker-compose
+image: zolotoykod/build-tools:latest
 
-build:
-  stage: build
-  before_script:
-    - echo 'Build frontend'
+test:
+  stage: test
   image: node:alpine
   script:
-    - sh build.sh
+    - make test
   cache:
     paths:
       - node_modules
+
+frontend:
+  stage: prebuild
+  image: node:alpine
+  script:
+    - make frontend
+  cache:
+    paths:<% if (stack === 'node') { %>
+      - www/public/node_modules
+      - www/public/.awcache<% } else { %>
+      - www/node_modules
+      - www/.awcache<% } %>
   artifacts:
-    paths:
-      - public/dist/
+    paths:<% if (stack === 'node') { %>
+      - www/public/dist<% } else { %>
+      - www/dist<% } %>
+  only:
+    - tags
+    - master
+
+build:
+  stage: build
+  script:
+    - make build
   only:
     - tags
     - master
@@ -26,7 +47,7 @@ staging:
   variables:
     DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
-    - sh bin/deploy
+    - make deploy
   environment:
     name: staging
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
@@ -38,7 +59,7 @@ production:
   variables:
     DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
-    - sh bin/deploy
+    - make deploy
   environment:
     name: production
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
