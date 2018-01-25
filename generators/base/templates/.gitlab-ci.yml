@@ -44,10 +44,11 @@ build:
 
 staging:
   stage: deploy
-  variables:
-    DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
     - make deploy
+  tags:
+    - swarm-manager
+    - can-deploy
   environment:
     name: staging
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
@@ -56,10 +57,11 @@ staging:
 
 production:
   stage: deploy
-  variables:
-    DOMAIN: $CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru
   script:
     - make deploy
+  tags:
+    - swarm-manager
+    - can-deploy
   environment:
     name: production
     url: http://$CI_ENVIRONMENT_SLUG.$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru

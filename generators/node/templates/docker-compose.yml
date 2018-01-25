@@ -5,7 +5,7 @@ services:
     build: ./
     image: <%=appname%>:latest
     environment:
-      - MONGO_URI=mongodb://mongo:27017/ucs_marketplace
+      - MONGO_URI=mongodb://mongo:27017/<%=appname%>
       - COOKIE_SECRET
       - NODEMAILER_SMTP_HOST
       - NODEMAILER_SMTP_PORT

@@ -7,7 +7,7 @@ if (!ENVIRONMENT) {
 
 let apps = [
   {
-    name: 'ucs',
+    name: '<%=appname%>',
     script: 'index.js'
   }
 ];
@@ -23,7 +23,6 @@ if (ENVIRONMENT === 'development') {
       'public/**',
       'templates/**',
       'logs',
-      'app/ucs-api/test/**',
       './**/*.pug',
       './**/*.php',
       './**/*.md'
@@ -35,7 +34,7 @@ if (ENVIRONMENT === 'development') {
   });
 
   // Add debug params
-  const appForDebug = process.env.DEBUG_APP || 'ucs';
+  const appForDebug = process.env.DEBUG_APP || '<%=appname%>';
   let debugApp = apps.findIndex((element) => element.name === appForDebug);
   if (debugApp >= 0)
     apps[debugApp].interpreter_args = ['--debug'];

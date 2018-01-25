@@ -1,6 +1,7 @@
 const CarcassGenerator = require('../../lib/carcass-generator');
 const _ = require('lodash');
 const chalk = require('chalk');
+const path = require('path');
 
 module.exports = class extends CarcassGenerator {
   /**
@@ -31,11 +32,10 @@ module.exports = class extends CarcassGenerator {
       description: 'Author full name',
       default: this.user.git.email()
     });
-    this.option('appname', {
-      type: String,
-      description: 'appname',
-      default: this.appname,
-      hide: true
+    Object.assign(this.options, {
+      appname: this.appname,
+      dirname: path.basename(this.destinationPath()),
+      gitOrigin: this.getGitOrigin('#ENTER_YOUR_GIT_REPO_HERE#')
     });
   }
 

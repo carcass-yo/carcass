@@ -65,7 +65,6 @@ define('DISALLOW_FILE_EDIT', true);
 
 /**
  * Memcached Settings
- * TODO: add env variable
  */
 if (file_exists(dirname(__FILE__) . '/memcached.php'))
 	$memcached_servers = include dirname(__FILE__) . '/memcached.php';

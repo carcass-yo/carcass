@@ -8,7 +8,8 @@ module.exports = {
     '.gitignore',
     '.gitlab-ci.yml',
     'Makefile',
-    'package.json'
+    'package.json',
+    'readme.md'
   ],
   frontend: [
     'tslint.json',
