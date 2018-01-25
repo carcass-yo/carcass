@@ -1,4 +1,4 @@
-# generator-carcass [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-carcass [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > ЗК.Каркас - Yeoman генератор структуры нового проекта
 
 ## Installation
@@ -30,9 +30,9 @@ MIT © [Constantine Karnaukhov](https://github.com/hustlahusky)
 
 [npm-image]: https://badge.fury.io/js/generator-carcass.svg
 [npm-url]: https://npmjs.org/package/generator-carcass
-[travis-image]: https://travis-ci.org/goldencodeio/generator-carcass.svg?branch=master
-[travis-url]: https://travis-ci.org/goldencodeio/generator-carcass
-[daviddm-image]: https://david-dm.org/goldencodeio/generator-carcass.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/goldencodeio/generator-carcass
-[coveralls-image]: https://coveralls.io/repos/goldencodeio/generator-carcass/badge.svg
-[coveralls-url]: https://coveralls.io/r/goldencodeio/generator-carcass
+[travis-image]: https://travis-ci.org/goldencodeio/carcass.svg?branch=master
+[travis-url]: https://travis-ci.org/goldencodeio/carcass
+[daviddm-image]: https://david-dm.org/goldencodeio/carcass.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/goldencodeio/carcass
+[coveralls-image]: https://coveralls.io/repos/goldencodeio/carcass/badge.svg
+[coveralls-url]: https://coveralls.io/r/goldencodeio/carcass
