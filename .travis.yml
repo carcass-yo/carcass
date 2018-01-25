@@ -1,6 +1,17 @@
 language: node_js
 node_js:
+  - node
+  - 8
   - 7
   - 6
   - 4
 after_script: 'cat ./coverage/lcov.info | coveralls'
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    - 1119@zolotoykod.ru
