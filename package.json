@@ -9,9 +9,10 @@
     "url": "https://github.com/hustlahusky"
   },
   "files": [
-    "generators"
+    "generators",
+    "lib"
   ],
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "keywords": [
     "wordpress",
     "bitrix",
