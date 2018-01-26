@@ -15,7 +15,13 @@ services:
         - com.df.port=80
       update_config:
         delay: 10s
-
+<% if (includeMysql) { %>
+volumes:
+  mysql:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+<% } %>
 networks:
   proxy:
     external: true

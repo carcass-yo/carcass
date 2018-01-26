@@ -9,8 +9,8 @@ services:
       - default
       - proxy<% if (includeMysql) { %>
     depends_on:
-      - mysql<% } %>
-<% if (includeMysql) { %>
+      - mysql
+
   mysql:
     image: zolotoykod/mysql:latest
     volumes:
@@ -20,12 +20,12 @@ services:
       - MYSQL_USER=bitrix
       - MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD
-<% } %>
-networks:
-  proxy:
-    external: true
-<% if (includeMysql) { %>
+
 volumes:
   mysql:
     driver: local
 <% } %>
+networks:
+  proxy:
+    external: true
+

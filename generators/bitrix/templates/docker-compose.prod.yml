@@ -5,6 +5,9 @@ services:
     build:
       dockerfile: Dockerfile-prod
     image: ${APP_IMAGE_NAME}
+    volumes:
+      - uploads:/var/www/html/upload
+      - bx_core:/var/www/html/bitrix
     deploy:
       replicas: 1
       labels:
@@ -15,6 +18,27 @@ services:
         - com.df.port=80
       update_config:
         delay: 10s
+
+volumes:
+  uploads:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+
+  bx_core:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+
+  mysql:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+
+  cache:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
 
 networks:
   proxy:

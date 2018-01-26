@@ -7,6 +7,8 @@ services:
     image: ${APP_IMAGE_NAME}
     environment:
       - WP_HOME=http://${DOMAIN}
+    volumes:
+      - uploads:/var/www/html/app/uploads/
     deploy:
       replicas: 1
       labels:
@@ -17,6 +19,22 @@ services:
         - com.df.port=80
       update_config:
         delay: 10s
+
+volumes:
+  uploads:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+
+  mysql:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
+
+  cache:
+    driver: vsphere
+    driver_opts:
+      size: 2gb
 
 networks:
   proxy:

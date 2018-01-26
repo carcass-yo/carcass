@@ -10,7 +10,7 @@ services:
       - NODE_ENV
       - SITE_DOMAIN=${DOMAIN}
     volumes:
-      - app_uploads:/home/node/www/public/uploads
+      - uploads:/home/node/www/public/uploads
     deploy:
       replicas: 1
 
@@ -40,7 +40,7 @@ volumes:
       size: 10gb
       fstype: xfs
 
-  app_uploads:
+  uploads:
     driver: vsphere
     driver_opts:
       size: 10gb
