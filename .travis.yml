@@ -13,4 +13,7 @@ cache:
 
 notifications:
   email:
-    - 1119@zolotoykod.ru
+    recipients:
+      - 1119@zolotoykod.ru
+    on_success: never
+    on_failure: always
