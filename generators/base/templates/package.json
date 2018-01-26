@@ -12,13 +12,20 @@
     "husky": "^0.14.3",
     "htmllint-cli": "^0.0.6",<% if (stack === 'node') { %>
     "pug-lint": "^2.5.0",<% } %>
-    "tslint": "^3.15.1",
+    "tslint": "^5.9.1",
+    "typescript": "^2.6.2"
     "stylelint": "^8.4.0"
   },
   "scripts": {
     "precommit": "npm run test",
     "prepush": "npm run test",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "$_ run lint",
+    "lint": "$_ run lint:eslint && $_ run lint:tslint && $_ run lint:style && $_ run lint:html<% if (stack === 'node') { %> && $_ run lint:pug<% } %>",
+    "lint:eslint": "eslint 'www/**/*.js' --ignore-pattern node_modules --ignore-pattern '**/dist/**'",
+    "lint:tslint": "tslint 'www/**/*.ts' --exclude **/node_modules/**/*",
+    "lint:html": "find ./www -name '*.html' -not -path '*node_modules*' -exec htmllint \"{}\" \\;",<% if (stack === 'node') { %>
+    "lint:pug": "find ./www -name '*.pug' -not -path '*node_modules*' -exec pug-lint \"{}\" \\;",<% } %>
+    "lint:style": "stylelint '**/*.less' --ignore-pattern node_modules --ignore-pattern '**/dist/**'",
     "start": "docker-compose up -d"
   }
 }
