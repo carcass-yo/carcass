@@ -3,9 +3,9 @@ version: '3'
 services:
   app:
     build: ./
-    image: <%=appname%>:latest
+    image: <%=appnameSlug%>:latest
     environment:
-      - MONGO_URI=mongodb://mongo:27017/<%=appname%>
+      - MONGO_URI=mongodb://mongo:27017/<%=appnameSlug%>
       - COOKIE_SECRET
       - NODEMAILER_SMTP_HOST
       - NODEMAILER_SMTP_PORT

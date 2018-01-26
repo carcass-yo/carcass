@@ -61,7 +61,7 @@ module.exports = class extends CarcassGenerator {
         type: 'input',
         name: 'devDomain',
         message: 'Enter development domain name',
-        default: this.appname + '.dev'
+        default: this.appnameSlug + '.dev'
       }
     ];
 
@@ -69,7 +69,10 @@ module.exports = class extends CarcassGenerator {
       Object.assign(
         this.options,
         props,
-        {appname: this.appname}
+        {
+          appname: this.appname,
+          appnameSlug: this.appnameSlug
+        }
       );
       this.composeWith(require.resolve('../frontend'), {
         dir: 'www',

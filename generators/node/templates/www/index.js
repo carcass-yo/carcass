@@ -6,9 +6,9 @@ const _ = require('underscore');
 /** Initialise Keystone with project's configuration */
 keystone.init({
   'name': '<%=appname%>',
-  'brand': '<%=appname%>',
+  'brand': '<%=appnameSlug%>',
   'port': process.env.PORT || 3000,
-  'mongo': process.env.MONGO_URI || 'mongodb://localhost/<%=appname%>',
+  'mongo': process.env.MONGO_URI || 'mongodb://localhost/<%=appnameSlug%>',
   'static': 'public',
   'favicon': 'public/favicon.png',
   'views': 'templates/views',

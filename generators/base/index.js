@@ -34,6 +34,7 @@ module.exports = class extends CarcassGenerator {
     });
     Object.assign(this.options, {
       appname: this.appname,
+      appnameSlug: this.appnameSlug,
       dirname: path.basename(this.destinationPath()),
       gitOrigin: this.getGitOrigin('#ENTER_YOUR_GIT_REPO_HERE#')
     });

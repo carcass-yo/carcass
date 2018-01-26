@@ -1,4 +1,4 @@
-FROM <%=appname%>:latest
+FROM <%=appnameSlug%>:latest
 
 COPY ./www/package.json /home/node/www/
 COPY ./www/yarn.lock /home/node/www/

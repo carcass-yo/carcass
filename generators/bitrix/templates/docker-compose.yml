@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build: ./
-    image: <%=appname%>:latest
+    image: <%=appnameSlug%>:latest
     depends_on:
       - mysql
       - memcached

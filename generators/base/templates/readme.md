@@ -60,12 +60,12 @@ npm run lint
 `PRODUCTION_DOMAIN` | доменное имя продакшн хоста | |<% if (stack === 'bitrix') { %>
 `MYSQL_PASSWORD` | пароль пользователя MySQL | |
 `MYSQL_ROOT_PASSWORD` | пароль root пользователя MySQL | |<% } else if (stack === 'node') { %>
-`MONGO_URI` | uri для подключения к MongoDB | `mongodb://mongo:27017/<%=appname%>` |
+`MONGO_URI` | uri для подключения к MongoDB | `mongodb://mongo:27017/<%=appnameSlug%>` |
 `COOKIE_SECRET` | соль для хэширования куки | | `8626276f99834111d7670f359994eb46c10590c0881a4e6cf923a4fbf7e5a095cd3ddfd7d3d0a3af083bc4ddf31d404c06e065a6e56fa882f104e880b405bb9f`
 `NODEMAILER_SMTP_HOST` | хост SMTP | `mail.zolotoykod.ru` |
 `NODEMAILER_SMTP_PORT` | порт SMTP | `25` |
 `NODEMAILER_SENDER_EMAIL` | адрес отправителя email | | `noreply@yourdomain.ru`
-`DEBUG_APP` | имя приложения для отладки (используется с pm2) | `<%=appname%>` |
+`DEBUG_APP` | имя приложения для отладки (используется с pm2) | `<%=appnameSlug%>` |
 `PORT` | порт приложения | `3000` |<% } else if (stack === 'web') { %>
 `MYSQL_PASSWORD` | пароль пользователя MySQL | |
 `MYSQL_ROOT_PASSWORD` | пароль root пользователя MySQL | |<% } else if (stack === 'wordpress') { %>

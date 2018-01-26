@@ -1,6 +1,6 @@
 node_modules
 coverage
-example
+example*
 
 # Numerous always-ignore extensions
 *.diff

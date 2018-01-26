@@ -1,5 +1,5 @@
 {
-  "name": "goldencode/<%=appname%>",
+  "name": "goldencode/<%=appnameSlug%>",
   "type": "project",
   "keywords": [
     "bitrix", "composer", "docker"

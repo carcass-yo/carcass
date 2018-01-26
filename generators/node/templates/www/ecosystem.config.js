@@ -7,7 +7,7 @@ if (!ENVIRONMENT) {
 
 let apps = [
   {
-    name: '<%=appname%>',
+    name: '<%=appnameSlug%>',
     script: 'index.js'
   }
 ];
@@ -25,7 +25,8 @@ if (ENVIRONMENT === 'development') {
       'logs',
       './**/*.pug',
       './**/*.php',
-      './**/*.md'
+      './**/*.md',
+      'ecosystem.config.js'
     ],
     watch_options: {
       usePolling: true
@@ -34,7 +35,7 @@ if (ENVIRONMENT === 'development') {
   });
 
   // Add debug params
-  const appForDebug = process.env.DEBUG_APP || '<%=appname%>';
+  const appForDebug = process.env.DEBUG_APP || '<%=appnameSlug%>';
   let debugApp = apps.findIndex((element) => element.name === appForDebug);
   if (debugApp >= 0)
     apps[debugApp].interpreter_args = ['--debug'];

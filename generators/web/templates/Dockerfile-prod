@@ -1,4 +1,4 @@
-FROM <%=appname%>:latest
+FROM <%=appnameSlug%>:latest
 
 COPY ./www/composer.json /var/www/html/
 COPY ./www/composer.lock /var/www/html/

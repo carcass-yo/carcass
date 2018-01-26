@@ -1,5 +1,5 @@
 {
-  "name": "<%=appname%>",
+  "name": "<%=appnameSlug%>",
   "author": {
     "name": "<%=authorName%>",
     "email": "<%=authorEmail%>"
