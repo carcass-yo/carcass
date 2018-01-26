@@ -2,8 +2,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {HttpModule, JsonpModule} from '@angular/http';
-import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule, HttpClientJsonpModule} from '@angular/common/http';
 import {TextMaskModule} from 'angular2-text-mask';
 import {MetrikaModule} from 'ng-yandex-metrika';
 import {CONFIG} from './lib/helpers';
@@ -11,15 +10,18 @@ import {CONFIG} from './lib/helpers';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header.component';
 import {FooterComponent} from './footer.component';
+import {HomePageComponent} from './home-page.component';
+import {PageNotFoundComponent} from './page-not-found.component';
+import {AppRouterModule} from './app-router.module';
 
-let imports = [
+let imports: any[] = [
   CommonModule,
   BrowserModule,
   FormsModule,
-  HttpModule,
-  JsonpModule,
+  HttpClientModule,
+  HttpClientJsonpModule,
   TextMaskModule,
-  RouterModule.forRoot(appRoutes, {enableTracing: (process.env.ENV !== 'production')})
+  AppRouterModule
 ];
 
 if (CONFIG.YA_METRIKA_CONF)
@@ -30,10 +32,12 @@ if (CONFIG.YA_METRIKA_CONF)
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent,
+    HomePageComponent
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'ru-RU'}
+    {provide: LOCALE_ID, useValue: 'ru'}
   ],
   bootstrap: [
     AppComponent

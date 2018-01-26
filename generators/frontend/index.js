@@ -20,6 +20,16 @@ module.exports = class extends CarcassGenerator {
       description: 'Development domain name',
       required: true
     });
+    this.option('authorName', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.name()
+    });
+    this.option('authorEmail', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.email()
+    });
   }
 
   /**
@@ -54,7 +64,10 @@ module.exports = class extends CarcassGenerator {
       Object.assign(
         this.options,
         props,
-        {appname: this.appname}
+        {
+          appname: this.appname,
+          appnameSlug: this.appnameSlug
+        }
       );
       if (this.options.includeUIkit) this.options.includeJQuery = true;
     });

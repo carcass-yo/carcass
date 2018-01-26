@@ -1,23 +1,10 @@
-import {Response} from '@angular/http';
+import {HttpErrorResponse} from '@angular/common/http';
 
-export class RestService {
-  public handleError(error: Response | any) {
-    let errMsg: string;
-    let logErrMsg: string;
-
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.message || body.detail || body.error || JSON.stringify(body);
-      logErrMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-      errMsg = err;
-    } else {
-      logErrMsg = errMsg = error.message ? error.message : error.toString();
-    }
-
-    console.error(logErrMsg);
-
-    throw errMsg;
-  }
+export class ErrorResponse {
+  error: {
+    code: string;
+    message: string;
+  };
 }
 
 export class ApiQueryParams {
@@ -28,4 +15,24 @@ export class ApiQueryParams {
   populate?: any;
   select?: any;
   distinct?: any;
+}
+
+export class RestService {
+  public handleError(err: ErrorResponse | HttpErrorResponse | Error) {
+    let errMsg: string;
+    let logErrMsg: string;
+
+    if (err instanceof HttpErrorResponse) {
+      const errObject: ErrorResponse = err.error;
+      logErrMsg = `${err.status} - ${err.statusText || ''} ${errObject.error.message}`;
+      errMsg = errObject.error.message;
+    } else {
+      logErrMsg = 'test';
+      // logErrMsg = errMsg = err.message ? err.message : err.toString();
+    }
+
+    console.error(logErrMsg);
+
+    throw errMsg;
+  }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {RestService} from './lib/RestService';
-import {Company} from './company.service';
+import {ErrorResponse, RestService} from './lib/RestService';
 
 export class User {
   _id: string;
@@ -12,13 +12,8 @@ export class User {
   };
   email: string;
   phone?: string;
-  city?: string;
-  photo?: string;
   birthday?: Date;
-  userStatus?: number;
-  company?: Company;
   isAdmin?: boolean;
-  isPartner?: boolean;
 }
 
 @Injectable()
@@ -39,37 +34,34 @@ export class UserService extends RestService {
       });
   }
 
-  public getCurrent(): Promise<User> {
-    let options = new RequestOptions({withCredentials: true});
-    return this.http.get('/api/v1/User', options)
+  public getCurrent(): Promise<User | any> {
+    return this.http.get<User>('/api/v1/User', {withCredentials: true})
       .toPromise()
-      .then((res: Response) => {
-        this.user = res.json();
+      .then((res: User) => {
+        this.user = res;
         return this.user;
       })
-      .catch(this.handleError)
-      .catch((err: Error) => {
-        if (err.name === 'not_auth') return null;
+      .catch((err: ErrorResponse) => {
+        if (err.error.code === 'NOT_AUTH') return null;
         throw err;
-      });
+      })
+      .catch(this.handleError);
   }
 
-  public signIn(data: {username: string; password: string; rememberMe?: boolean}): Promise<void | User> {
-    let options = new RequestOptions({withCredentials: true});
-    return this.http.post('/api/v1/User/signin', data, options)
+  public signIn(data: {username: string; password: string; rememberMe?: boolean}): Promise<User | any> {
+    return this.http.post<User>('/api/v1/User/signin', data, {withCredentials: true})
       .toPromise()
-      .then((res: Response) => {
-        this.user = res.json();
+      .then((res: User) => {
+        this.user = res;
         return this.user;
       })
       .catch(this.handleError);
   }
 
-  public signOut(): Promise<void | User | null> {
-    let options = new RequestOptions({withCredentials: true});
-    return this.http.get('/api/v1/User/signout', options)
+  public signOut(): Promise<User | any> {
+    return this.http.get<any>('/api/v1/User/signout', {withCredentials: true})
       .toPromise()
-      .then((res: Response) => {
+      .then(() => {
         this.user = null;
         return this.user;
       })
@@ -83,57 +75,45 @@ export class UserService extends RestService {
       name: {first: string; last: string};
       username: string;
     }
-  ): Promise<void | User> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({withCredentials: true, headers: headers});
-    return this.http.post('/api/v1/User', data, options)
+  ): Promise<User | any> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = {withCredentials: true, headers: headers};
+    return this.http.post<User>('/api/v1/User', data, options)
       .toPromise()
-      .then((res: Response) => {
-        this.user = res.json();
+      .then((res: User) => {
+        this.user = res;
         return this.user;
       })
       .catch(this.handleError);
   }
 
-  public update(data: User): Promise<any | User> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({withCredentials: true, headers: headers});
-    return this.http.patch(`/api/v1/User/${data._id}`, data, options)
+  public update(data: User): Promise<User | any> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = {withCredentials: true, headers: headers};
+    return this.http.patch<User>(`/api/v1/User/${data._id}`, data, options)
       .toPromise()
-      .then((res: Response) => {
-        this.user = res.json();
-        return this.user;
-      })
-      .catch(this.handleError);
-  }
-
-  public uploadAvatar(data: FormData): Promise<any | User> {
-    let options = new RequestOptions({withCredentials: true});
-    return this.http.post('/api/v1/User/uploadAvatar', data, options)
-      .toPromise()
-      .then((res: Response) => {
-        this.user = res.json();
+      .then((res: User) => {
+        this.user = res;
         return this.user;
       })
       .catch(this.handleError);
   }
 
   public resetPasswordRequest(data: {username: string}): Promise<any> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({withCredentials: true, headers: headers});
-    return this.http.post('/api/v1/User/resetPasswordRequest', data, options)
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = {withCredentials: true, headers: headers};
+    return this.http.post<any>('/api/v1/User/resetPasswordRequest', data, options)
       .toPromise()
-      .then((res: Response) => res.json())
       .catch(this.handleError);
   }
 
-  public resetPassword(data: {_id: string, password: string}): Promise<any | User> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({withCredentials: true, headers: headers});
-    return this.http.post('/api/v1/User/resetPassword', data, options)
+  public resetPassword(data: {_id: string, password: string}): Promise<User | any> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = {withCredentials: true, headers: headers};
+    return this.http.post<User>('/api/v1/User/resetPassword', data, options)
       .toPromise()
       .then((res: Response) => {
-        this.user = res.json();
+        this.user = res;
         return this.user;
       })
       .catch(this.handleError);
