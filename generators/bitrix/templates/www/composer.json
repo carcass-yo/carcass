@@ -11,11 +11,20 @@
     }
   ],
   "require": {
+    "php": ">=7.1",
+    "composer/installers": "^1.4",
     "arrilot/bitrix-migrations": "^2.1",
     "oscarotero/env": "^1.1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2"
+  },
+  "extra": {
+    "installer-paths": {
+      "local/components/{$name}/": ["type:bitrix-component", "type:bitrix-d7-component"],
+      "local/templates/{$name}/": ["type:bitrix-theme", "type:bitrix-d7-theme"],
+      "local/modules/{$name}/": ["type:bitrix-module", "type:bitrix-d7-module"]
+    }
   },
   "scripts": {
     "test": [
