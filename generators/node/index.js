@@ -3,6 +3,25 @@ const crypto = require('crypto');
 
 module.exports = class extends CarcassGenerator {
   /**
+   * Node generator
+   * @param {String|Array} args
+   * @param {Object} opts
+   */
+  constructor(args, opts) {
+    super(args, opts);
+    this.option('authorName', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.name()
+    });
+    this.option('authorEmail', {
+      type: String,
+      description: 'Author full name',
+      default: this.user.git.email()
+    });
+  }
+
+  /**
    * Init web generator with base generator
    */
   initializing() {
