@@ -32,7 +32,7 @@ module.exports = class extends CarcassGenerator {
         type: 'input',
         name: 'devDomain',
         message: 'Enter development domain name',
-        default: this.appnameSlug + '.dev'
+        default: this.appnameSlug + '.local'
       }
     ];
 
