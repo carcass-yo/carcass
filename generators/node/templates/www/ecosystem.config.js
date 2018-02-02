@@ -38,7 +38,7 @@ if (ENVIRONMENT === 'development') {
   const appForDebug = process.env.DEBUG_APP || '<%=appnameSlug%>';
   let debugApp = apps.findIndex((element) => element.name === appForDebug);
   if (debugApp >= 0)
-    apps[debugApp].interpreter_args = ['--debug'];
+    apps[debugApp].interpreter_args = ['--inspect=0.0.0.0:9229'];
 }
 
 // Auto Restart apps on server

@@ -14,7 +14,7 @@ services:
       - NODEMAILER_SMTP_PORT=25
       - NODEMAILER_SENDER_EMAIL=noreply@<%=devDomain%>
     ports:
-      - "5858:5858"
+      - "9229:9229"
 
   mongo:
     ports:
