@@ -6,8 +6,7 @@ test:
 	yarn run test
 
 frontend:
-	<% if (stack === 'node') { %>cd www/public/<% } else { %>
-	cd www/<% } %>; \
+	<% if (stack === 'node') { %>cd www/public/<% } else { %>cd www/<% } %>; \
 	yarn install; \
 	if [ "$$CI_ENVIRONMENT_NAME" == "production" ]; then \
 		export NODE_ENV="production"; \
