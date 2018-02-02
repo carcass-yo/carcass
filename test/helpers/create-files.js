@@ -87,7 +87,6 @@ module.exports = {
     'www/templates/views/index.pug',
     'www/updates/0.0.1-admins.js',
     'www/updates/0.0.2-app-config.js',
-    'www/.eslintrc',
     'www/ecosystem.config.js',
     'www/index.js',
     'www/package.json',
