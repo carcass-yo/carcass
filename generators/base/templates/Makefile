@@ -23,7 +23,7 @@ deploy:
 	export APP_IMAGE_NAME="$(APP_IMAGE_NAME)"; \
 	export ENVIRONMENT="$$CI_ENVIRONMENT_NAME"; \
 	export DOMAIN="$$CI_ENVIRONMENT_SLUG.$$CI_PROJECT_PATH_SLUG.swarm.zolotoykod.ru"; \
-	export NODE_ENV="development" \
+	export NODE_ENV="development"; \
 	if [ "$$ENVIRONMENT" == "production" ]; then \
 		export NODE_ENV="production"; \
 		if [ ! -z "$$PRODUCTION_DOMAIN" ]; then \
