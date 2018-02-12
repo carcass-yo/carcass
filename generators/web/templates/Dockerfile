@@ -5,7 +5,7 @@ RUN chmod +x /usr/local/sbin/custom-entrypoint
 CMD custom-entrypoint; sleep infinity
 
 # enable ssmtp
-#RUN mv /etc/php/7.1/fpm/conf.d/30-ssmtp.ini.disabled /etc/php/7.1/fpm/conf.d/30-ssmtp.ini &&
+#RUN mv /etc/php/7.1/fpm/conf.d/30-ssmtp.ini.disabled /etc/php/7.1/fpm/conf.d/30-ssmtp.ini && \
 #	mv /etc/php/7.1/cli/conf.d/30-ssmtp.ini.disabled /etc/php/7.1/cli/conf.d/30-ssmtp.ini
 
 # ssmtp config
