@@ -19,8 +19,8 @@
   "scripts": {
     "precommit": "npm run test",
     "prepush": "npm run test",
-    "test": "$_ run lint",
-    "lint": "$_ run lint:eslint && $_ run lint:tslint && $_ run lint:style && $_ run lint:html<% if (stack === 'node') { %> && $_ run lint:pug<% } %>",
+    "test": "npm run lint",
+    "lint": "npm run lint:eslint && npm run lint:tslint && npm run lint:style && npm run lint:html<% if (stack === 'node') { %> && npm run lint:pug<% } %>",
     "lint:eslint": "eslint 'www/**/*.js' --ignore-pattern node_modules --ignore-pattern '**/dist/**'",
     "lint:tslint": "tslint 'www/**/*.ts' --exclude **/node_modules/**/*",
     "lint:html": "find ./www -name '*.html' -not -path '*node_modules*' -exec htmllint \"{}\" \\;",<% if (stack === 'node') { %>
