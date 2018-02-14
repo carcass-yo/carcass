@@ -2,7 +2,7 @@
 set -e
 
 # run migrations before server start
-php migrator migrate
+./vendor/bin/migrator migrate
 
 # server start
 /usr/local/sbin/entrypoint
