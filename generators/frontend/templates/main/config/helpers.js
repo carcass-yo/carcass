@@ -2,10 +2,7 @@ const path = require('path');
 
 const _root = path.resolve(__dirname, '..');
 
-let root = function(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join(...[_root].concat(args));
-};
+let root = (...args) => path.join(...[_root].concat(args));
 
 const SOURCE_PATH = path.resolve(_root, 'src');
 const BUILD_PATH = path.resolve(_root, 'dist');

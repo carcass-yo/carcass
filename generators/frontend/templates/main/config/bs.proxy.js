@@ -7,8 +7,9 @@ module.exports = {
     `${pub}/img/**`,
     `${pub}/fonts/**`
   ],
-  proxy: {
-    target: 'http://<%=devDomain%>/',
-    ws: true
-  }
+  server: helpers.root()
+  // proxy: {
+  //   target: 'http://<%=devDomain%>/',
+  //   ws: true
+  // }
 };
