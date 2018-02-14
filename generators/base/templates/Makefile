@@ -5,6 +5,10 @@ test:
 	yarn install
 	yarn run test
 
+lint:
+	yarn install
+	yarn run lint
+
 frontend:
 	<% if (stack === 'node') { %>cd www/public/<% } else { %>cd www/<% } %>; \
 	yarn install; \

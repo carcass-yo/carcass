@@ -9,7 +9,6 @@
   "devDependencies": {
     "eslint": "^4.1.0",
     "eslint-config-google": "^0.7.1",
-    "husky": "^0.14.3",
     "htmllint-cli": "^0.0.6",<% if (stack === 'node') { %>
     "pug-lint": "^2.5.0",<% } %>
     "tslint": "^5.9.1",
@@ -17,15 +16,13 @@
     "stylelint": "^8.4.0"
   },
   "scripts": {
-    "precommit": "npm run test",
-    "prepush": "npm run test",
     "test": "npm run lint",
     "lint": "npm run lint:eslint && npm run lint:tslint && npm run lint:style && npm run lint:html<% if (stack === 'node') { %> && npm run lint:pug<% } %>",
-    "lint:eslint": "eslint 'www/**/*.js' --ignore-pattern node_modules --ignore-pattern '**/dist/**'",
-    "lint:tslint": "tslint 'www/**/*.ts' --exclude **/node_modules/**/*",
-    "lint:html": "find ./www -name '*.html' -not -path '*node_modules*' -exec htmllint \"{}\" \\;",<% if (stack === 'node') { %>
-    "lint:pug": "find ./www -name '*.pug' -not -path '*node_modules*' -exec pug-lint \"{}\" \\;",<% } %>
-    "lint:style": "stylelint '**/*.less' --ignore-pattern node_modules --ignore-pattern '**/dist/**'",
+    "lint:eslint": "eslint 'www/**/*.js' --ignore-pattern node_modules --ignore-pattern vendor --ignore-pattern '**/dist/**' --ignore-pattern bitrix",
+    "lint:tslint": "tslint --project <% if (stack === 'node') { %>www/public<% } else { %>www<% } %>/tsconfig.json 'www/**/*.ts' --exclude '**/node_modules/**/*' --exclude '**/bitrix/**/*'",
+    "lint:html": "find ./www -name '*.html' -not -path '*node_modules*' -not -path '*vendor*' -not -path '*bitrix*' -exec htmllint \"{}\" \\;",<% if (stack === 'node') { %>
+    "lint:pug": "find ./www -name '*.pug' -not -path '*node_modules*' -not -path '*vendor*' -not -path '*bitrix*' -exec pug-lint \"{}\" \\;",<% } %>
+    "lint:style": "stylelint '**/*.less' --ignore-pattern node_modules --ignore-pattern vendor --ignore-pattern '**/dist/**' --ignore-pattern bitrix",
     "start": "docker-compose up -d"
   }
 }
